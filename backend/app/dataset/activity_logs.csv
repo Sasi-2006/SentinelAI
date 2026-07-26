@@ -1,0 +1,7 @@
+employee,action,files,location,time,risk
+John Smith,download,500,external,23:45,90
+John Smith,login_failed,0,internal,02:00,80
+Emma Wilson,login,5,internal,10:00,10
+Alex Brown,access_sensitive,100,internal,21:00,70
+David Lee,download,20,internal,14:00,30
+Sarah Miller,download,800,external,01:00,95

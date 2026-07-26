@@ -1,0 +1,7 @@
+employee,login_count,failed_logins,files_accessed,downloads,external_access,risk_score
+John Smith,15,8,120,50,1,90
+Emma Wilson,8,1,20,2,0,20
+Alex Brown,12,5,70,25,1,65
+David Lee,10,2,30,5,0,30
+Sarah Miller,18,10,150,70,1,95
+Robert King,7,0,15,1,0,10

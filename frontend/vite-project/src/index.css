@@ -1,0 +1,568 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+
+body{
+
+    margin:0;
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    background:#f4f6fb;
+
+    color:#111827;
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+
+.navbar{
+
+    height:60px;
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    z-index:1000;
+
+}
+
+
+.navbar h1{
+
+    font-size:22px;
+
+    margin:0;
+
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+
+.sidebar{
+
+    width:220px;
+
+    height:100vh;
+
+    background:#1f2937;
+
+    color:white;
+
+    padding:80px 20px 20px;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+}
+
+
+.sidebar li{
+
+    list-style:none;
+
+    padding:15px 10px;
+
+    margin:8px 0;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+.sidebar li:hover{
+
+    background:#374151;
+
+}
+
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+
+.dashboard{
+
+    margin-left:240px;
+
+    padding:90px 30px 30px;
+
+}
+
+
+
+/* =========================
+   STAT CARDS
+========================= */
+
+
+.dashboard-cards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.stat-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+    text-align:center;
+
+}
+
+
+.stat-card h3{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}
+
+
+.stat-card p{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    margin:10px 0;
+
+    color:#2563eb;
+
+}
+
+
+
+/* =========================
+   COMMON CARD
+========================= */
+
+
+.card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.08);
+
+    margin:20px 0;
+
+}
+
+
+
+/* =========================
+   TABLE
+========================= */
+
+
+table{
+
+    width:100%;
+
+    background:white;
+
+    border-collapse:collapse;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+
+th{
+
+    background:#111827;
+
+    color:white;
+
+}
+
+
+td,th{
+
+    padding:14px;
+
+    text-align:center;
+
+}
+
+
+tr:nth-child(even){
+
+    background:#f9fafb;
+
+}
+
+
+tr:hover{
+
+    background:#eef2ff;
+
+}
+
+
+
+/* =========================
+   EMPLOYEE RISK LABEL
+========================= */
+
+
+.risk-high{
+
+    color:#dc2626;
+
+    font-weight:bold;
+
+}
+
+
+.risk-medium{
+
+    color:#f59e0b;
+
+    font-weight:bold;
+
+}
+
+
+.risk-low{
+
+    color:#16a34a;
+
+    font-weight:bold;
+
+}
+
+
+
+/* =========================
+   ALERT CARDS
+========================= */
+
+
+.alert-container{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.alert-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+    border-left:8px solid #ef4444;
+
+    transition:0.3s;
+
+}
+
+
+
+.alert-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+.alert-card h3{
+
+    margin-top:0;
+
+}
+
+
+.alert-card p{
+
+    color:#4b5563;
+
+}
+
+
+
+/* Severity colors */
+
+
+.high{
+
+    border-left-color:#dc2626;
+
+}
+
+
+.medium{
+
+    border-left-color:#f59e0b;
+
+}
+
+
+.low{
+
+    border-left-color:#22c55e;
+
+}
+
+
+
+/* =========================
+   ACTIVITY CHART
+========================= */
+
+
+.chart-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+
+.chart-bar{
+
+    height:20px;
+
+    background:#2563eb;
+
+    border-radius:10px;
+
+    margin:12px 0;
+
+}
+
+
+
+/* =========================
+   RISK METER
+========================= */
+
+
+.risk-meter{
+
+    width:200px;
+
+    height:200px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:20px auto;
+
+    background:
+
+    conic-gradient(
+    #ef4444 0% 82%,
+    #e5e7eb 82% 100%
+    );
+
+}
+
+
+
+.risk-inner{
+
+    width:150px;
+
+    height:150px;
+
+    background:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+}
+
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+
+button{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+button:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+
+@media(max-width:1000px){
+
+
+.dashboard-cards{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+}
+
+
+.alert-container{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.sidebar{
+
+    width:180px;
+
+}
+
+
+.dashboard{
+
+    margin-left:200px;
+
+}
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.sidebar{
+
+    display:none;
+
+}
+
+
+.dashboard{
+
+    margin-left:0;
+
+}
+
+
+.dashboard-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+
+}
