@@ -1,150 +1,184 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 
-function EmployeeTable(){
+function EmployeeTable() {
 
-    const [employees,setEmployees] = useState([]);
-    const [loading,setLoading] = useState(true);
-
-
-    useEffect(()=>{
-
-        axios.get("http://127.0.0.1:8000/employees")
-        .then(res=>{
-
-            const data = res.data.map(emp=>({
-
-                ...emp,
-
-                loginRisk:
-                emp.login_count > 100
-                ?
-                "High"
-                :
-                emp.login_count > 50
-                ?
-                "Medium"
-                :
-                "Low"
-
-            }));
-
-            setEmployees(data);
-            setLoading(false);
-
-        })
-        .catch(err=>{
-            console.log(err);
-            setLoading(false);
-        })
+    const [employees, setEmployees] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 
-    },[])
+    useEffect(() => {
+
+        api.get("/employees")
+            .then((res) => {
+
+                const data = res.data.map((emp) => ({
+
+                    ...emp,
+
+                    loginRisk:
+                        emp.login_count > 100
+                            ? "High"
+                            : emp.login_count > 50
+                                ? "Medium"
+                                : "Low"
+
+                }));
+
+
+                setEmployees(data);
+                setLoading(false);
+
+            })
+            .catch((err) => {
+
+                console.error("Employee API Error:", err);
+                setLoading(false);
+
+            });
+
+
+    }, []);
 
 
 
-    if(loading){
-        return <h3>Loading Employees...</h3>
+    if (loading) {
+
+        return (
+            <h3>
+                Loading Employees...
+            </h3>
+        );
+
     }
 
 
 
-return(
+    return (
 
-<div>
+        <div className="employee-container">
 
-<h2>Employees</h2>
-
-
-<table border="1" width="100%">
-
-<thead>
-
-<tr>
-
-<th>Name</th>
-
-<th>Department</th>
-
-<th>Role</th>
-
-<th>Login Risk</th>
-
-<th>ML Risk Score</th>
-
-</tr>
-
-</thead>
+            <h2>
+                👥 Employees
+            </h2>
 
 
+            {
+                employees.length === 0 ?
 
-<tbody>
+                (
+                    <p>
+                        No employee data available
+                    </p>
+                )
 
+                :
 
-{
-employees.map(emp=>(
+                (
 
-<tr key={emp._id}>
+                <table border="1" width="100%">
 
+                    <thead>
 
-<td>
-{emp.name}
-</td>
+                        <tr>
 
+                            <th>Name</th>
 
-<td>
-{emp.department}
-</td>
+                            <th>Department</th>
 
+                            <th>Role</th>
 
-<td>
-{emp.role}
-</td>
+                            <th>Login Risk</th>
 
+                            <th>ML Risk Score</th>
 
-<td>
+                            <th>Status</th>
 
-{
-emp.loginRisk
-}
+                        </tr>
 
-</td>
-
-
-
-<td>
-
-{
-emp.risk_score
-?
-emp.risk_score
-:
-"Run Analysis"
-}
-
-</td>
+                    </thead>
 
 
-
-</tr>
-
-
-))
-}
+                    <tbody>
 
 
-</tbody>
+                    {
+                        employees.map((emp) => (
+
+                            <tr key={emp._id || emp.id}>
 
 
-</table>
+                                <td>
+                                    {emp.name}
+                                </td>
 
 
-</div>
+                                <td>
+                                    {emp.department}
+                                </td>
 
 
-)
+                                <td>
+                                    {emp.role}
+                                </td>
 
+
+                                <td>
+
+                                    {
+                                        emp.loginRisk
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    {
+                                        emp.risk_score !== undefined
+                                            ?
+                                            emp.risk_score
+                                            :
+                                            "Not Analysed"
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    {
+                                        emp.status
+                                            ?
+                                            emp.status
+                                            :
+                                            "Normal"
+                                    }
+
+                                </td>
+
+
+                            </tr>
+
+                        ))
+
+                    }
+
+
+                    </tbody>
+
+
+                </table>
+
+                )
+
+            }
+
+
+        </div>
+
+    );
 
 }
 
