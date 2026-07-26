@@ -1,89 +1,103 @@
-import {useEffect,useState} from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import api from "../services/api";
 import "../styles/AlertTable.css";
 
 
-function AlertTable(){
+function AlertTable() {
 
-const [alerts,setAlerts]=useState([]);
-
-
-useEffect(()=>{
-
-axios.get("http://127.0.0.1:8000/alerts")
-.then(res=>{
-
-setAlerts(res.data.slice(-6).reverse())
-
-})
-
-},[])
+    const [alerts, setAlerts] = useState([]);
 
 
+    useEffect(() => {
 
-return(
+        api.get("/alerts")
+            .then((res) => {
 
-<div>
+                setAlerts(
+                    res.data.slice(-6).reverse()
+                );
 
-<h2>🚨 Threat Alerts</h2>
+            })
+            .catch((err) => {
 
+                console.error("Alert API Error:", err);
 
-<div className="alert-container">
-
-
-{
-alerts.map((alert,index)=>(
-
-
-<div 
-key={alert._id || index}
-className={`alert-card ${alert.severity.toLowerCase()}`}
->
+            });
 
 
-<h3>
-🚨 {alert.employee || alert.employee_name}
-</h3>
+    }, []);
 
 
-<p>
-Risk Score:
-<b>
-{alert.risk_score || "N/A"}
-</b>
-</p>
+
+    return (
+
+        <div>
+
+            <h2>
+                🚨 Threat Alerts
+            </h2>
 
 
-<p>
-{alert.message}
-</p>
+            <div className="alert-container">
 
 
-<p>
-Severity:
-
-<b>
-{alert.severity}
-</b>
-
-</p>
+                {
+                    alerts.map((alert, index) => (
 
 
-</div>
+                        <div
+                            key={alert._id || index}
+                            className={`alert-card ${
+                                alert.severity
+                                    ? alert.severity.toLowerCase()
+                                    : ""
+                            }`}
+                        >
 
 
-))
-
-}
-
-
-</div>
+                            <h3>
+                                🚨 {alert.employee || alert.employee_name}
+                            </h3>
 
 
-</div>
+
+                            <p>
+                                Risk Score:
+                                <b>
+                                    {alert.risk_score || "N/A"}
+                                </b>
+                            </p>
 
 
-)
+
+                            <p>
+                                {alert.message}
+                            </p>
+
+
+
+                            <p>
+                                Severity:
+                                <b>
+                                    {alert.severity || "Unknown"}
+                                </b>
+                            </p>
+
+
+                        </div>
+
+
+                    ))
+
+                }
+
+
+            </div>
+
+
+        </div>
+
+    );
 
 }
 
